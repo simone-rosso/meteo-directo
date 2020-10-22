@@ -1,55 +1,25 @@
+import React, { useEffect, useState } from "react";
 import { EuiComboBox, EuiComboBoxOptionOption } from "@elastic/eui";
-import React, { useState } from "react";
 import "@elastic/eui/dist/eui_theme_light.css";
-
-const options: EuiComboBoxOptionOption[] = [
-  {
-    label: "Enceladus",
-  },
-  {
-    label: "Mimas",
-  },
-  {
-    label: "Dione",
-  },
-  {
-    label: "Iapetus",
-  },
-  {
-    label: "Phoebe",
-  },
-  {
-    label: "Rhea",
-  },
-  {
-    label:
-      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-  },
-  {
-    label: "Tethys",
-  },
-  {
-    label: "Hyperion",
-  },
-];
+import { getProvinces } from "../../components/services/provinces";
+import { API_URI } from "../../utils/costants";
+import ComboboxHomepage from "../../components/ComboboxHomepage/ComboboxHomepage";
 
 const Homepage = () => {
-  const [selectedOptions, setSelected] = useState<EuiComboBoxOptionOption>(options[2]);
+  const [options, setOptions] = useState<EuiComboBoxOptionOption[]>([]);
 
-  const onChange = (selectedOptions: any) => {
-    setSelected(selectedOptions);
-  };
+  useEffect(() => {
+    getProvinces(API_URI)
+      .then((res) => {
+        if (res) setOptions(res);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
 
   return (
-    <div>
-      Homepage
-      <EuiComboBox
-        placeholder="Select a single option"
-        singleSelection={{ asPlainText: true }}
-        /* selectedOptions={selectedOptions} */
-        options={options}
-        onChange={onChange}
-      />
+    <div className="homepage-container">
+      <h2 className="homepage-title">Homepage</h2>
+      <ComboboxHomepage options={options} />
     </div>
   );
 };
