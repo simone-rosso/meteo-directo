@@ -4,20 +4,23 @@ import "./ComboboxHomepage.css";
 
 interface ComboboxHomepage {
   options: EuiComboBoxOptionOption[];
+  onSelectedOption: (city: string) => void;
 }
 
-const ComboboxHomepage = ({ options }: ComboboxHomepage) => {
-  const [selectedOptions, setSelected] = useState();
+const ComboboxHomepage = ({ options, onSelectedOption }: ComboboxHomepage) => {
+  const [selectedOption, setSelected] = useState<EuiComboBoxOptionOption[]>();
 
-  const onChange = (selectedOptions: any) => {
-    setSelected(selectedOptions);
+  const onChange = (selectedOption: EuiComboBoxOptionOption[]) => {
+    setSelected(selectedOption);
+    if (selectedOption && selectedOption.length)
+      onSelectedOption(selectedOption[0].label);
   };
 
   return (
     <EuiComboBox
       placeholder="Select a single option"
       singleSelection={{ asPlainText: true }}
-      selectedOptions={selectedOptions}
+      selectedOptions={selectedOption}
       options={options}
       onChange={onChange}
     />
