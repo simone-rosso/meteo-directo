@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/ProvinceList/ProvinceList.tsx"],"names":["ProvinceList"],"mappings":"wHAAA,2BAMeA,UAJM,WACnB,OAAO","file":"static/js/409.240e4261.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst ProvinceList = () => {\r\n  return <div>Province List</div>;\r\n};\r\n\r\nexport default ProvinceList;\r\n"],"sourceRoot":""}
