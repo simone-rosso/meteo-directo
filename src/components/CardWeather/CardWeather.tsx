@@ -19,11 +19,23 @@ const CardContent = ({ townWeather }: CardWeatherProps) => {
   return (
     <>
       <h5>{townWeather.municipio.NOMBRE_PROVINCIA}</h5>
-      <h2>
-        {" "}
-        <EuiIcon type="temperature" />
-        {townWeather.temperatura_actual} °C
-      </h2>
+      <div className="temperature">
+        <span className="temperature-min">
+          {" "}
+          <EuiIcon type="sortDown" />
+          {townWeather.temperaturas.min} °C
+        </span>
+        <span className="temperature-actual">
+          {" "}
+          <EuiIcon type="temperature" />
+          {townWeather.temperatura_actual} °C
+        </span>
+        <span className="temperature-max">
+          <EuiIcon type="sortUp" />
+          {townWeather.temperaturas.max} °C
+        </span>
+      </div>
+
       <h3 className="rain-title">Probabilidad de LLuvia</h3>
       <EuiFlexGroup>
         {townWeather.pronostico.hoy.prob_precipitacion.map((quarter, index) => {
@@ -32,7 +44,7 @@ const CardContent = ({ townWeather }: CardWeatherProps) => {
               <EuiStat
                 title={typeof quarter === "string" ? `${quarter}%` : "-"}
                 description={quarters[index]}
-                titleSize="m"
+                titleSize="l"
               />
               {typeof quarter === "string" && parseInt(quarter) >= 50 ? (
                 <EuiIcon type="alert" color="danger" />

@@ -6,3 +6,22 @@
 li {
   list-style: none;
 }
+.temperature {
+  margin-top: 45px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.temperature-actual {
+  font-size: 2.5rem;
+}
+
+.temperature-min {
+  color: #006bb4;
+  font-weight: 700;
+}
+
+.temperature-max {
+  color: #bd271e;
+  font-weight: 700;
+}
