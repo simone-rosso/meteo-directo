@@ -1,10 +1,19 @@
 .footer-container {
-  height: 50px;
   background-color: #1b3959;
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
   color: #fff;
-  padding: 20px;
+  padding: 25px;
+}
+
+.footer-container a {
+  color: #fff;
+  font-size: 1.2;
+}
+
+.footer-container .euiIcon--medium {
+  color: #fff;
+  margin-left: 10px;
 }
