@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  EuiCard,
-  EuiComboBoxOptionOption,
-  EuiLoadingChart,
-} from "@elastic/eui";
+import { EuiComboBoxOptionOption, EuiLoadingChart } from "@elastic/eui";
 import "@elastic/eui/dist/eui_theme_light.css";
 import { getTowns, getWeather } from "../../services/apiCalls";
 import { API_URI } from "../../utils/costants";

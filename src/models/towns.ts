@@ -36,4 +36,13 @@ export interface TownWeather {
   };
   temperatura_actual: string;
   pronostico: { hoy: { prob_precipitacion: string[] } };
+  breadcrumb: object[];
+  fecha: string;
+  humedad: string;
+  imagen: null;
+  keywords: string;
+  lluvia: string;
+  proximos_dias: object[];
+  temperaturas: { max: string; min: string };
+  viento: string;
 }

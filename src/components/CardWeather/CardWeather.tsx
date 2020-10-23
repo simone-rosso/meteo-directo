@@ -12,13 +12,13 @@ const quarters = ["Mañana", "Mediodía", "Tarde", "Noche"];
 const CardContent = ({ townWeather }: CardWeatherProps) => {
   return (
     <>
-      <p>{townWeather.municipio.NOMBRE_PROVINCIA}</p>
-      <h2>
+      <span>{townWeather.municipio.NOMBRE_PROVINCIA}</span>
+      <span>
         {" "}
         <EuiIcon type="temperature" />
         {townWeather.temperatura_actual} °C
-      </h2>
-      <h5>Probabilidad de LLuvia</h5>
+      </span>
+      <span>Probabilidad de LLuvia</span>
       <ul>
         {townWeather.pronostico.hoy.prob_precipitacion.map((quarter, index) => {
           return (
