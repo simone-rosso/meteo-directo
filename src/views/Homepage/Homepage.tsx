@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { EuiCard, EuiComboBoxOptionOption } from "@elastic/eui";
+import {
+  EuiCard,
+  EuiComboBoxOptionOption,
+  EuiLoadingChart,
+} from "@elastic/eui";
 import "@elastic/eui/dist/eui_theme_light.css";
-import { getTowns } from "../../components/services/apiCalls";
+import { getTowns, getWeather } from "../../services/apiCalls";
 import { API_URI } from "../../utils/costants";
 import ComboboxHomepage from "../../components/ComboboxHomepage/ComboboxHomepage";
-import { town } from "../../models/towns";
+import { APICallFields, town, TownWeather } from "../../models/towns";
+import CardWeather from "../../components/CardWeather/CardWeather";
 
-interface APIFields {
-  label: string;
-  CODIGOINE: string;
-  CODPROV: string;
-}
+import "./Homepage.css";
 
 const Homepage = () => {
   const [options, setOptions] = useState<EuiComboBoxOptionOption[]>([]);
-  const [apiFields, setApiFields] = useState<APIFields[]>();
-  const [weather, setWeather] = useState();
+  const [apiCallFields, setApiCallFields] = useState<APICallFields[]>();
+  const [selectedTown, setSelectedTown] = useState<TownWeather>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getTowns(API_URI).then((res: town[]) => {
@@ -24,7 +26,7 @@ const Homepage = () => {
           return { label: x.NOMBRE };
         })
       );
-      setApiFields(
+      setApiCallFields(
         res.map((x: town) => {
           return {
             label: x.NOMBRE,
@@ -36,26 +38,38 @@ const Homepage = () => {
     });
   }, []);
 
-  const onSelectedOption = (city: string) => {
-    const foo = apiFields?.find((x) => x.label === city);
-    console.log(foo);
+  const onSelectedOption = (townSelected: string) => {
+    setSelectedTown(undefined);
+    setLoading(true);
+    const townToApiCall = apiCallFields?.find(
+      (x: APICallFields) => x.label === townSelected
+    );
+    if (townToApiCall !== undefined)
+      getWeather(
+        API_URI,
+        townToApiCall.CODPROV,
+        townToApiCall.CODIGOINE.slice(0, 5)
+      )
+        .then((weather) => {
+          setLoading(false);
+          setSelectedTown(weather);
+        })
+        .catch((err) => console.warn(err));
   };
 
   return (
     <div className="homepage-container">
-      <h2 className="homepage-title">Homepage</h2>
       <ComboboxHomepage
         options={options}
         onSelectedOption={(value) => onSelectedOption(value)}
       />
-      {apiFields && (
-        <EuiCard
-          textAlign="left"
-          title={apiFields[0].label}
-          description={apiFields[0].CODIGOINE.slice(0, 5)}
-          onClick={() => console.log("clicked")}
-        />
+      {loading && !selectedTown && (
+        <div className="spinner-container">
+          {" "}
+          <EuiLoadingChart size="xl" />
+        </div>
       )}
+      {selectedTown && !loading && <CardWeather townWeather={selectedTown} />}
     </div>
   );
 };

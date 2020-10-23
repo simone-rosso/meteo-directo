@@ -19,3 +19,21 @@ export interface town {
   ORIGEN_ALTITUD: string;
   DISCREPANTE_INE: number;
 }
+
+export interface APICallFields {
+  label: string;
+  CODIGOINE: string;
+  CODPROV: string;
+}
+
+export interface TownWeather {
+  municipio: {
+    NOMBRE: string;
+    NOMBRE_PROVINCIA: string;
+  };
+  stateSky: {
+    description: string;
+  };
+  temperatura_actual: string;
+  pronostico: { hoy: { prob_precipitacion: string[] } };
+}

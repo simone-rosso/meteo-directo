@@ -1,0 +1,8 @@
+.card-weather {
+  width: 100%;
+  margin: 50px auto;
+  max-width: 400px;
+}
+li {
+  list-style: none;
+}

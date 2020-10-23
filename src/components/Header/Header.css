@@ -1,8 +1,10 @@
 .header-container {
-  height: 74px;
   background-color: #1b3959;
   text-align: center;
   position: sticky;
   color: #fff;
   padding: 30px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }

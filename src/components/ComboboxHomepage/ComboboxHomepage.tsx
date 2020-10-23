@@ -18,7 +18,7 @@ const ComboboxHomepage = ({ options, onSelectedOption }: ComboboxHomepage) => {
 
   return (
     <EuiComboBox
-      placeholder="Select a single option"
+      placeholder="Secciona un municipio..."
       singleSelection={{ asPlainText: true }}
       selectedOptions={selectedOption}
       options={options}

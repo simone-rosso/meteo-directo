@@ -1,3 +1,7 @@
-.homepage-title {
+.homepage-container {
+  margin-top: 50px;
+}
+.spinner-container {
   text-align: center;
+  margin-top: 50px;
 }
