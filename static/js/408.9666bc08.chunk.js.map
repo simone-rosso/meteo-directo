@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/City/City.tsx"],"names":["City"],"mappings":"wHAAA,2BAMeA,UAJF,WACX,OAAO","file":"static/js/408.9666bc08.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst City = () => {\r\n  return <div>City</div>;\r\n};\r\n\r\nexport default City;\r\n"],"sourceRoot":""}
