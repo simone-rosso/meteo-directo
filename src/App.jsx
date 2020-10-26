@@ -26,11 +26,30 @@ export default function App() {
       <Router history={history}>
         <Suspense fallback={<EuiLoadingChart size="m" />}>
           <Switch>
-            <PrivateRoute exact path="/" component={Homepage} />
-            <PrivateRoute exact path="/saved" component={Saved} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route path="/" component={() => <Redirect to="/" />} />
+            <PrivateRoute
+              exact
+              path={process.env.PUBLIC_URL + "/"}
+              component={Homepage}
+            />
+            <PrivateRoute
+              exact
+              path={process.env.PUBLIC_URL + "/saved"}
+              component={Saved}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/login"}
+              component={Login}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/signup"}
+              component={Signup}
+            />
+            <Route
+              path={process.env.PUBLIC_URL + "*"}
+              component={() => <Redirect to="/" />}
+            />
           </Switch>
         </Suspense>
       </Router>

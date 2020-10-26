@@ -10,7 +10,7 @@ const SaveButton = () => {
     event.preventDefault();
     try {
       await app.auth().signOut();
-      window.location.href = "/login";
+      window.location.href = process.env.PUBLIC_URL + "/login";
       history.push("/login");
     } catch (error) {
       alert(error);

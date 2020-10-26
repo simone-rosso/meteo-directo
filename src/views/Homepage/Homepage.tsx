@@ -55,7 +55,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout goTo="municipios guardados" url={"/saved"}>
+    <Layout goTo="municipios guardados" url={process.env.PUBLIC_URL + "/saved"}>
       <div className="homepage-container">
         <ComboboxHomepage
           options={options}

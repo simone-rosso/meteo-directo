@@ -11,7 +11,7 @@ const PageNotFound = () => {
         width="250"
       />
       <p>
-        <a href="/" className="link">
+        <a href={process.env.PUBLIC_URL + "/"} className="link">
           Go back to the Homepage
         </a>
       </p>
