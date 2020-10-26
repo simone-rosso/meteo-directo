@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { EuiComboBoxOptionOption, EuiLoadingChart } from "@elastic/eui";
-import "@elastic/eui/dist/eui_theme_light.css";
 import { getTowns, getWeather } from "../../services/apiCalls";
-import { API_URI } from "../../utils/costants";
 import ComboboxHomepage from "../../components/ComboboxHomepage/ComboboxHomepage";
-import { APICallFields, town, TownWeather } from "../../models/towns";
 import CardWeather from "../../components/CardWeather/CardWeather";
+import { APICallFields, town, TownWeather } from "../../models/towns";
+import { API_URI } from "../../utils/costants";
+import Layout from "../../components/Layout/Layout";
+import SaveButton from "../../components/SaveButton/SaveButton";
 
 import "./Homepage.css";
 
@@ -54,19 +55,24 @@ const Homepage = () => {
   };
 
   return (
-    <div className="homepage-container">
-      <ComboboxHomepage
-        options={options}
-        onSelectedOption={(value) => onSelectedOption(value)}
-      />
-      {loading && !selectedTown && (
-        <div className="spinner-container">
-          {" "}
-          <EuiLoadingChart size="xl" />
-        </div>
-      )}
-      {selectedTown && !loading && <CardWeather townWeather={selectedTown} />}
-    </div>
+    <Layout goTo="municipios guardados" url={"/saved"}>
+      <div className="homepage-container">
+        <ComboboxHomepage
+          options={options}
+          onSelectedOption={(value) => onSelectedOption(value)}
+        />
+        {loading && !selectedTown && (
+          <div className="spinner-container">
+            {" "}
+            <EuiLoadingChart size="xl" />
+          </div>
+        )}
+        {selectedTown && !loading && <CardWeather townWeather={selectedTown} />}
+        {selectedTown && !loading && (
+          <SaveButton city={selectedTown.municipio.NOMBRE} />
+        )}
+      </div>
+    </Layout>
   );
 };
 

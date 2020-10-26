@@ -7,4 +7,6 @@
   font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 3px;
+  display: flex;
+  justify-content: space-between;
 }

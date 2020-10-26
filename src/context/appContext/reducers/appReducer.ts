@@ -1,27 +1,22 @@
 import { AppContextType } from "../actions/action_types";
 
-export interface IAppReducerState {
-  location: string;
+export interface AppReducerState {
+  goTo?: string;
+  path?: string;
 }
 
-export interface IAppReducerActions {
-  type: string;
-  payload?: any;
-}
-
-export const initialState: IAppReducerState = {
-  location: "",
-};
+export const initialState: AppReducerState = {};
 
 export const AppReducer = (
-  state: IAppReducerState = initialState,
-  action: IAppReducerActions
+  state: AppReducerState = initialState,
+  action: any
 ) => {
   switch (action.type) {
     case AppContextType.CHANGE_LOCATION:
       return {
         ...state,
-        location: action.payload,
+        goTO: action.goTo,
+        path: action.path,
       };
     default:
       return state;

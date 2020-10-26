@@ -1,14 +1,18 @@
+import React from "react";
 import { EuiIcon } from "@elastic/eui";
-import React, { useContext } from "react";
-import Context from "../../utils/context";
+
 import "./Footer.css";
 
-const Footer = () => {
-  const { location, changeLocation } = useContext(Context);
+interface FooterProps {
+  goTo: string;
+  url: string;
+}
+
+const Footer = ({ goTo, url }: FooterProps) => {
   return (
     <div className="footer-container">
-      <a href="/saved">
-        Go to {location}
+      <a href={url}>
+        Ir a {goTo}
         <EuiIcon type="sortRight" />
       </a>
     </div>

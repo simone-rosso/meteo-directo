@@ -6,14 +6,16 @@ import "./Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
+  goTo: string;
+  url: string;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, goTo, url }: LayoutProps) => {
   return (
     <div className="layout">
       <Header />
       <main className="main-container">{children}</main>
-      <Footer />
+      <Footer goTo={goTo} url={url} />
     </div>
   );
 };

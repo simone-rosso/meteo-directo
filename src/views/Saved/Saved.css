@@ -1,0 +1,11 @@
+.cities-list li {
+  background-color: #006bb4;
+  border-color: #006bb4;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  list-style: none;
+  margin: 1% 0.5%;
+  width: 50%;
+  margin: auto;
+}
