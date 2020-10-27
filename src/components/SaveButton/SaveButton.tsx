@@ -11,6 +11,7 @@ interface SaveButtonProps {
 
 const SaveButton = ({ city }: SaveButtonProps) => {
   const onCreate = () => {
+    app.firestore().settings({ experimentalForceLongPolling: true });
     app
       .firestore()
       .collection("cities")
