@@ -37,7 +37,7 @@ const Saved = () => {
   });
 
   return (
-    <Layout goTo="homepage" url={process.env.PUBLIC_URL + "/"}>
+    <Layout goTo="homepage" url={"/"}>
       <EuiListGroup listItems={citiesList} className="cities-list" />
     </Layout>
   );
