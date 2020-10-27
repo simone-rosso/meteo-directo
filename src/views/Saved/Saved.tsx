@@ -1,44 +1,58 @@
 import React, { useState } from "react";
-import { EuiListGroup, EuiListGroupItemProps } from "@elastic/eui";
+import {
+  EuiListGroup,
+  EuiListGroupItemProps,
+  EuiLoadingChart,
+} from "@elastic/eui";
 
 import Layout from "../../components/Layout/Layout";
 import app from "../../firebase";
 
 import "./Saved.css";
+import { SaveButtonProps } from "../../components/SaveButton/SaveButton";
 
 const Saved = () => {
-  const [cities, setCities] = useState<any[]>([
-    "Barcelona",
-    "Madrid",
-    "Malaga",
-    "Bilbao",
-    "Sevilla",
-    "Vigo",
-  ]);
+  const [cities, setCities] = useState<SaveButtonProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   React.useEffect(() => {
     const fetchData = async () => {
       const db = app.firestore();
       const data = await db.collection("cities").get();
-      console.log(data.docs);
-      setCities(data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setCities(
+        data.docs.map((x: any) => {
+          const { city, temperature, sky } = x.Df.sn.proto.mapValue.fields;
+          return {
+            city: city.stringValue,
+            temperature: temperature.stringValue,
+            sky: sky.stringValue,
+          };
+        })
+      );
     };
     fetchData();
+    setLoading(false);
   }, []);
 
   const listObject: EuiListGroupItemProps = {
     label: "",
-    size: "l",
-    iconType: "annotation",
+    size: "m",
+    iconType: "starFilledSpace",
   };
 
   const citiesList: EuiListGroupItemProps[] = cities.map((city) => {
-    return { ...listObject, label: city };
+    return { ...listObject, label: city.city };
   });
 
   return (
-    <Layout goTo="homepage" url={process.env.PUBLIC_URL + "/"}>
-      <EuiListGroup listItems={citiesList} className="cities-list" />
+    <Layout goTo="homepage" url={"/"}>
+      {loading ? (
+        <div className="spinner-container">
+          <EuiLoadingChart size="xl" />
+        </div>
+      ) : (
+        <EuiListGroup listItems={citiesList} className="cities-list" />
+      )}
     </Layout>
   );
 };

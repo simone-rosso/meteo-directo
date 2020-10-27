@@ -16,8 +16,8 @@ const Login = ({ history }: LoginProps) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push(process.env.PUBLIC_URL + "/");
-        window.location.href = process.env.PUBLIC_URL + "/";
+        history.push("/");
+        window.location.href = "/";
       } catch (error) {
         alert(error);
       }
@@ -28,7 +28,7 @@ const Login = ({ history }: LoginProps) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to={process.env.PUBLIC_URL + "/"} />;
+    return <Redirect to={"/"} />;
   }
 
   return (
@@ -47,8 +47,7 @@ const Login = ({ history }: LoginProps) => {
       </form>
       <p>
         {" "}
-        todavia no tienes una cuenta?{" "}
-        <a href={process.env.PUBLIC_URL + "/signup"}>Registrate</a>
+        todavia no tienes una cuenta? <a href={"/signup"}>Registrate</a>
       </p>
     </div>
   );

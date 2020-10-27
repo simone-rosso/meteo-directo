@@ -55,7 +55,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout goTo="municipios guardados" url={process.env.PUBLIC_URL + "/saved"}>
+    <Layout goTo="municipios guardados" url={"/saved"}>
       <div className="homepage-container">
         <ComboboxHomepage
           options={options}
@@ -69,7 +69,11 @@ const Homepage = () => {
         )}
         {selectedTown && !loading && <CardWeather townWeather={selectedTown} />}
         {selectedTown && !loading && (
-          <SaveButton city={selectedTown.municipio.NOMBRE} />
+          <SaveButton
+            city={selectedTown.municipio.NOMBRE}
+            sky={selectedTown.stateSky.description}
+            temperature={selectedTown.temperatura_actual}
+          />
         )}
       </div>
     </Layout>
