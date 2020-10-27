@@ -7,21 +7,26 @@ import app from "../../firebase";
 import "./Saved.css";
 
 const Saved = () => {
-  const [cities, setCities] = useState<any[]>([
-    "Barcelona",
-    "Madrid",
-    "Malaga",
-    "Bilbao",
-    "Sevilla",
-    "Vigo",
-  ]);
+  const [cities, setCities] = useState<any[]>([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       const db = app.firestore();
       const data = await db.collection("cities").get();
-      console.log(data.docs);
-      setCities(data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setCities(
+        data.docs.map((x: any) => {
+          const {
+            city,
+            /*             temperature,
+            sky,
+            date, */
+          } = x.Df.sn.proto.mapValue.fields;
+          return city.stringValue;
+          /*             temperature: temperature.stringValue,
+            sky: sky.stringValue,
+            date: date.timestampValue, */
+        })
+      );
     };
     fetchData();
   }, []);
