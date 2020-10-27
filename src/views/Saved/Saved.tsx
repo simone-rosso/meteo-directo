@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { EuiListGroup, EuiListGroupItemProps } from "@elastic/eui";
+import {
+  EuiListGroup,
+  EuiListGroupItemProps,
+  EuiLoadingChart,
+} from "@elastic/eui";
 
 import Layout from "../../components/Layout/Layout";
 import app from "../../firebase";
 
 import "./Saved.css";
+import { SaveButtonProps } from "../../components/SaveButton/SaveButton";
 
 const Saved = () => {
-  const [cities, setCities] = useState<any[]>([]);
+  const [cities, setCities] = useState<SaveButtonProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -15,35 +21,38 @@ const Saved = () => {
       const data = await db.collection("cities").get();
       setCities(
         data.docs.map((x: any) => {
-          const {
-            city,
-            /*             temperature,
-            sky,
-            date, */
-          } = x.Df.sn.proto.mapValue.fields;
-          return city.stringValue;
-          /*             temperature: temperature.stringValue,
+          const { city, temperature, sky } = x.Df.sn.proto.mapValue.fields;
+          return {
+            city: city.stringValue,
+            temperature: temperature.stringValue,
             sky: sky.stringValue,
-            date: date.timestampValue, */
+          };
         })
       );
     };
     fetchData();
+    setLoading(false);
   }, []);
 
   const listObject: EuiListGroupItemProps = {
     label: "",
-    size: "l",
-    iconType: "annotation",
+    size: "m",
+    iconType: "starFilledSpace",
   };
 
   const citiesList: EuiListGroupItemProps[] = cities.map((city) => {
-    return { ...listObject, label: city };
+    return { ...listObject, label: city.city };
   });
 
   return (
     <Layout goTo="homepage" url={"/"}>
-      <EuiListGroup listItems={citiesList} className="cities-list" />
+      {loading ? (
+        <div className="spinner-container">
+          <EuiLoadingChart size="xl" />
+        </div>
+      ) : (
+        <EuiListGroup listItems={citiesList} className="cities-list" />
+      )}
     </Layout>
   );
 };

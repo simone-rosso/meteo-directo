@@ -5,20 +5,16 @@ import "./SaveButton.css";
 
 import app from "../../firebase";
 
-interface SaveButtonProps {
+export interface SaveButtonProps {
   city: string;
+  sky: string;
+  temperature: string;
 }
 
-const SaveButton = ({ city }: SaveButtonProps) => {
+const SaveButton = ({ city, sky, temperature }: SaveButtonProps) => {
   const onCreate = () => {
-    app.firestore().settings({ experimentalForceLongPolling: true });
-    app
-      .firestore()
-      .collection("cities")
-      .add({ name: "hardcoded" })
-      .then((ref) => {
-        console.log("Added document with ID: ", ref.id);
-      });
+    const data = { city, sky, temperature };
+    app.firestore().collection("cities").add(data);
   };
 
   return (
