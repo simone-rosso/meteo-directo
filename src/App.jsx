@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Route, Router, Switch, Redirect } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import { EuiLoadingChart } from "@elastic/eui";
 
 // context
@@ -15,8 +15,7 @@ import history from "./utils/history";
 import "./App.css";
 import "@elastic/eui/dist/eui_theme_light.css";
 
-const Login = lazy(() => import("./views/Login/Login"));
-const Signup = lazy(() => import("./views/Signup/Signup"));
+const Auth = lazy(() => import("./views/Auth/Auth"));
 const Homepage = lazy(() => import("./views/Homepage/Homepage"));
 const Saved = lazy(() => import("./views/Saved/Saved"));
 
@@ -26,30 +25,9 @@ export default function App() {
       <Router history={history}>
         <Suspense fallback={<EuiLoadingChart size="m" />}>
           <Switch>
-            <PrivateRoute
-              exact
-              path={process.env.PUBLIC_URL + "/"}
-              component={Homepage}
-            />
-            <PrivateRoute
-              exact
-              path={process.env.PUBLIC_URL + "/saved"}
-              component={Saved}
-            />
-            <Route
-              exact
-              path={process.env.PUBLIC_URL + "/login"}
-              component={Login}
-            />
-            <Route
-              exact
-              path={process.env.PUBLIC_URL + "/signup"}
-              component={Signup}
-            />
-            <Route
-              path={process.env.PUBLIC_URL + "*"}
-              component={() => <Redirect to="/" />}
-            />
+            <PrivateRoute exact path={"/"} component={Homepage} />
+            <PrivateRoute exact path={"/saved"} component={Saved} />
+            <Route exact path={"/login" | "/signup"} component={Auth} />
           </Switch>
         </Suspense>
       </Router>

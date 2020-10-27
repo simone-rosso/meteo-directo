@@ -2,3 +2,29 @@
   width: 400px;
   margin: auto;
 }
+
+.paragraph {
+  margin: 0 15px;
+}
+
+.alert {
+  width: 400px;
+  margin: 15px auto;
+  padding: 5px;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.alert-success {
+  border-color: #017d73;
+  background-color: #e6f2f1;
+  border-color: #017d73;
+}
+
+.alert-danger {
+  border-color: #bd271e;
+  background-color: #f8e9e9;
+  border-color: #bd271e;
+}
