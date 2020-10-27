@@ -15,8 +15,7 @@ import history from "./utils/history";
 import "./App.css";
 import "@elastic/eui/dist/eui_theme_light.css";
 
-const Login = lazy(() => import("./views/Login/Login"));
-const Signup = lazy(() => import("./views/Signup/Signup"));
+const Auth = lazy(() => import("./views/Auth/Auth"));
 const Homepage = lazy(() => import("./views/Homepage/Homepage"));
 const Saved = lazy(() => import("./views/Saved/Saved"));
 
@@ -28,8 +27,7 @@ export default function App() {
           <Switch>
             <PrivateRoute exact path={"/"} component={Homepage} />
             <PrivateRoute exact path={"/saved"} component={Saved} />
-            <Route exact path={"/login"} component={Login} />
-            <Route exact path={"/signup"} component={Signup} />
+            <Route exact path={"/login" | "/signup"} component={Auth} />
           </Switch>
         </Suspense>
       </Router>
