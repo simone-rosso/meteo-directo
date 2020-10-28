@@ -1,5 +1,5 @@
-import React from "react";
-import { EuiButton, EuiFlexItem } from "@elastic/eui";
+import React, { useState } from "react";
+import { EuiButton, EuiCallOut, EuiFlexItem, EuiIcon } from "@elastic/eui";
 
 import "./SaveButton.css";
 
@@ -12,24 +12,56 @@ export interface SaveButtonProps {
 }
 
 const SaveButton = ({ city, sky, temperature }: SaveButtonProps) => {
+  const [callout, setCallout] = useState<"success" | "danger">();
+
   const onCreate = () => {
     const data = { city, sky, temperature };
-    app.firestore().collection("cities").add(data);
+    // To test the alert
+    const random = Math.random() > 0.5;
+
+    random
+      ? app
+          .firestore()
+          .collection("cities")
+          .add(data)
+          .then(() => setCallout("success"))
+          .catch(() => setCallout("danger"))
+      : setCallout("danger");
+
+    setTimeout(() => setCallout(undefined), 5000);
   };
 
   return (
-    <EuiFlexItem grow={false}>
-      <EuiButton
-        iconSide="right"
-        iconType="pin"
-        size="s"
-        fill
-        onClick={onCreate}
-        className="save-button"
-      >
-        Guarda {city} en tu coleccion
-      </EuiButton>
-    </EuiFlexItem>
+    <>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="pin"
+          size="s"
+          fill
+          onClick={onCreate}
+          className="save-button"
+        >
+          Guarda {city} en tu colección
+        </EuiButton>
+      </EuiFlexItem>
+      {callout === "success" && (
+        <div className="alert alert-success">
+          <p>
+            <EuiIcon type="checkInCircleFilled" className="paragraph" />
+            La ciudad se ha guardado en tu lista!!
+          </p>
+        </div>
+      )}
+      {callout === "danger" && (
+        <div className="alert alert-danger">
+          <p>
+            <EuiIcon type="alert" className="paragraph" />
+            Hubo un error...
+          </p>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -3,6 +3,8 @@ import axios, { AxiosResponse } from "axios";
 import { ProvincesResource } from "../models/provinces";
 import { TownWeather } from "../models/towns";
 
+// TO-DO add interceptor
+
 export const getTowns = async (apiUrl: string) => {
   const towns = await axios
     .get(`${apiUrl}/municipios`)

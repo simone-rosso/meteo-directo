@@ -1,5 +1,7 @@
 # meteo-directo
 
+to compile use yarn start
+
 Simple web app to check the wheater in all Spain.
 
 to run it locally:
