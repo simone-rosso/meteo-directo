@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EuiButton, EuiCallOut, EuiFlexItem, EuiIcon } from "@elastic/eui";
+import { EuiButton, EuiFlexItem, EuiIcon } from "@elastic/eui";
 
 import "./SaveButton.css";
 
