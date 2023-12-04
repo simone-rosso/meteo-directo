@@ -1,5 +1,6 @@
 import React from "react";
 import { EuiIcon } from "@elastic/eui";
+import {CoinGekoWhiteLogo} from "../../assets/svg";
 
 import "./Footer.css";
 
@@ -12,10 +13,15 @@ const Footer = ({ goTo, url }: FooterProps) => {
   return (
     <div className="footer-container">
       {/*TO-DO Don't recharge the full page to change location*/}
-      <a href={url}>
+      {/* <a href={url}>
         Ir a {goTo}
         <EuiIcon type="sortRight" />
-      </a>
+      </a> */}
+      <div className="footer-container__left_area"></div>
+      <div className="footer-container__sponsor">
+        <h3>Powered by </h3>
+      <img src={CoinGekoWhiteLogo} alt="coingeko_logo" className="footer-container__logo"></img>
+      </div>
     </div>
   );
 };

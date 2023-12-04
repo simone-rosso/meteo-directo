@@ -11,7 +11,7 @@ import SaveButton from "../../components/SaveButton/SaveButton";
 import "./Homepage.css";
 
 const Homepage = () => {
-  const [options, setOptions] = useState<EuiComboBoxOptionOption[]>([]);
+/*   const [options, setOptions] = useState<EuiComboBoxOptionOption[]>([]);
   const [apiCallFields, setApiCallFields] = useState<APICallFields[]>();
   const [selectedTown, setSelectedTown] = useState<TownWeather>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -52,30 +52,11 @@ const Homepage = () => {
           setSelectedTown(weather);
         })
         .catch((err) => console.warn(err));
-  };
+  }; */
 
   return (
     <Layout goTo="municipios guardados" url={"/saved"}>
-      <div className="homepage-container">
-        <ComboboxHomepage
-          options={options}
-          onSelectedOption={(value) => onSelectedOption(value)}
-        />
-        {loading && !selectedTown && (
-          <div className="spinner-container">
-            {" "}
-            <EuiLoadingChart size="xl" />
-          </div>
-        )}
-        {selectedTown && !loading && <CardWeather townWeather={selectedTown} />}
-        {selectedTown && !loading && (
-          <SaveButton
-            city={selectedTown.municipio.NOMBRE}
-            sky={selectedTown.stateSky.description}
-            temperature={selectedTown.temperatura_actual}
-          />
-        )}
-      </div>
+      <div>asddas</div>
     </Layout>
   );
 };

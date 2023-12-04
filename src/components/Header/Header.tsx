@@ -6,7 +6,7 @@ import LogoutButton from "../LogoutButton/LogoutButton";
 const Header = () => {
   return (
     <div className="header-container">
-      <div>Meteo en Directo</div>
+      <div>Crypto Capitalization</div>
       <div>
         <LogoutButton />
       </div>

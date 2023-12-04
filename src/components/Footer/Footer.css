@@ -3,9 +3,10 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: center;
   color: #fff;
   padding: 25px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer-container a {
@@ -16,4 +17,14 @@
 .footer-container .euiIcon--medium {
   color: #fff;
   margin-left: 10px;
+}
+
+.footer-container__logo {
+  height: 40px;
+}
+
+.footer-container__sponsor {
+  display: flex;
+  align-items: end;
+  flex-direction: column;
 }

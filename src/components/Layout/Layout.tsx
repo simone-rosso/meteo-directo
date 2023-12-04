@@ -14,7 +14,9 @@ const Layout = ({ children, goTo, url }: LayoutProps) => {
   return (
     <div className="layout">
       <Header />
-      <main className="main-container">{children}</main>
+      <main className="main-container">
+        {children}
+      </main>
       <Footer goTo={goTo} url={url} />
     </div>
   );
