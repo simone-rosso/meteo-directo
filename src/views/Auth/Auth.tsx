@@ -21,6 +21,7 @@ import {
 } from "@elastic/eui";
 
 import "./Auth.css";
+import Layout from "../../components/Layout/Layout";
 
 interface AuthProps {
   history: any;
@@ -72,6 +73,7 @@ const Auth = ({ history }: AuthProps) => {
   const { email, password } = credentials;
 
   return (
+    <Layout goTo="" url="">
     <EuiPage>
       <EuiPageBody component="div">
         <EuiPageContent verticalPosition="center" horizontalPosition="center">
@@ -140,6 +142,7 @@ const Auth = ({ history }: AuthProps) => {
         </EuiPageContent>
       </EuiPageBody>
     </EuiPage>
+    </Layout>
   );
 };
 
