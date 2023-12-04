@@ -1,62 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { EuiComboBoxOptionOption, EuiLoadingChart } from "@elastic/eui";
-import { getTowns, getWeather } from "../../services/apiCalls";
-import ComboboxHomepage from "../../components/ComboboxHomepage/ComboboxHomepage";
-import CardWeather from "../../components/CardWeather/CardWeather";
-import { APICallFields, town, TownWeather } from "../../models/towns";
-import { API_URI } from "../../utils/costants";
+import { Api, Coins } from "../../utils/costants";
 import Layout from "../../components/Layout/Layout";
-import SaveButton from "../../components/SaveButton/SaveButton";
 
 import "./Homepage.css";
+import Table from "../../components/Table/Table";
 
 const Homepage = () => {
-/*   const [options, setOptions] = useState<EuiComboBoxOptionOption[]>([]);
-  const [apiCallFields, setApiCallFields] = useState<APICallFields[]>();
-  const [selectedTown, setSelectedTown] = useState<TownWeather>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState([])
 
-  useEffect(() => {
-    getTowns(API_URI).then((res: town[]) => {
-      setOptions(
-        res.map((x: town) => {
-          return { label: x.NOMBRE };
-        })
-      );
-      setApiCallFields(
-        res.map((x: town) => {
-          return {
-            label: x.NOMBRE,
-            CODIGOINE: x.CODIGOINE,
-            CODPROV: x.CODPROV,
-          };
-        })
-      );
+  
+  const url = `${Api.Path}${Coins.Bitcoin}&x_cg_demo_api_key=${Api.Key}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log('data:', data);
+      setData(data);
+      setLoading(false);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      setLoading(false);
     });
-  }, []);
-
-  const onSelectedOption = (townSelected: string) => {
-    setSelectedTown(undefined);
-    setLoading(true);
-    const townToApiCall = apiCallFields?.find(
-      (x: APICallFields) => x.label === townSelected
-    );
-    if (townToApiCall !== undefined)
-      getWeather(
-        API_URI,
-        townToApiCall.CODPROV,
-        townToApiCall.CODIGOINE.slice(0, 5)
-      )
-        .then((weather) => {
-          setLoading(false);
-          setSelectedTown(weather);
-        })
-        .catch((err) => console.warn(err));
-  }; */
 
   return (
-    <Layout goTo="municipios guardados" url={"/saved"}>
-      <div>asddas</div>
+    <Layout goTo="" url="/">
+      <Table rawData={data}/>
     </Layout>
   );
 };
