@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Api, Coins } from "../../utils/costants";
+import React from "react";
 import Layout from "../../components/Layout/Layout";
-
-import "./Homepage.css";
 import Table from "../../components/Table/Table";
+import { useDataFetching } from "../../hooks/useDataFetching";
+import { hardcodedCoins } from "../../utils/costants";
+import Loader, { LoaderSize } from "../../components/Loader/Loader";
 
 const Homepage = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState([])
-
-  
-  const url = `${Api.Path}${Coins.Bitcoin}&x_cg_demo_api_key=${Api.Key}`;
-
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log('data:', data);
-      setData(data);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      setLoading(false);
-    });
+  const { loading, data } = useDataFetching({
+    cryptoValues: hardcodedCoins
+  });
+  console.log(data)
 
   return (
     <Layout goTo="" url="/">
-      <Table rawData={data}/>
+      {
+        loading
+          ? <Loader size={LoaderSize.Xl} />
+          : <Table rawData={data} />
+      }
     </Layout>
   );
 };

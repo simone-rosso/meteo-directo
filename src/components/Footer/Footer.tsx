@@ -1,5 +1,4 @@
 import React from "react";
-import { EuiIcon } from "@elastic/eui";
 import {CoinGekoWhiteLogo} from "../../assets/svg";
 
 import "./Footer.css";

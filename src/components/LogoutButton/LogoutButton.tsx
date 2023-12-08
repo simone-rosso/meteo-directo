@@ -6,7 +6,7 @@ import history from "../../utils/history";
 import app from "../../firebase";
 
 const SaveButton = () => {
-  const handleLogout = useCallback(async (event) => {
+  const handleLogout = useCallback(async (event:any) => {
     event.preventDefault();
     try {
       await app.auth().signOut();

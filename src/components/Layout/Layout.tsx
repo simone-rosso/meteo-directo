@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import "./Layout.css";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   goTo: string;
   url: string;
 }

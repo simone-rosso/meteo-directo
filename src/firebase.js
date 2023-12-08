@@ -1,15 +1,18 @@
-import * as firebase from "firebase";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyDwET9DroVo0qggKtCr7g714khgyaet6Z4",
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDERS_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  authDomain: "meteo-directo.firebaseapp.com",
+  databaseURL: "https://meteo-directo.firebaseio.com",
+  projectId: "meteo-directo",
+  storageBucket: "meteo-directo.appspot.com",
+  messagingSenderId: "14581652904",
+  appId: "1:14581652904:web:514ac2ae0a879b03bbd19d",
+  measurementId: "G-69RHBWHJJK"
 });
 
 export const auth = app.auth();
+export const firestore = app.firestore();  
 export default app;

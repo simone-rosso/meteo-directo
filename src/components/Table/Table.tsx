@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    formatDate,
     EuiBasicTable,
     EuiBasicTableColumn,
-    EuiLink,
-    EuiHealth
 } from '@elastic/eui';
 
 type CryptoCoin = {
     id: number;
-    iconUrl: string; 
+    iconUrl: string;
     name: string;
     dateOfProjection: Date;
     currentRanking: number;
@@ -27,7 +24,7 @@ type CryptoCoin = {
     Ratio: number
 };
 
-export default ({rawData}:any) => {
+const Table = ({ rawData }: any) => {
     /**
      * Mobile column options
      */
@@ -35,27 +32,76 @@ export default ({rawData}:any) => {
         {
             field: 'name',
             name: 'Name',
-            truncateText: true,
+            width: 'auto',
         },
         {
             field: 'market_cap_rank',
             name: 'Current Ranking',
-            truncateText: true,
+        },
+        {
+            field: 'none',
+            name: 'Projected Ranking',
         },
         {
             field: 'market_cap',
             name: 'Current Market Cap',
-            truncateText: true,
         },
-    ];  
+        {
+            field: 'none',
+            name: 'Projected Market Cap',
+        },
+        {
+            field: 'max_supply',
+            name: 'Total Supply',
+        },
+        {
+            field: 'circulating_supply',
+            name: 'Circulating Supply',
+        },
+        {
+            field: 'none',
+            name: 'Equivalent price at current supply',
+        },
+        {
+            field: 'current_price',
+            name: 'Current Price ($)',
+        },
+        {
+            field: 'none',
+            name: 'Amount',
+        },
+        {
+            field: 'none',
+            name: 'Current Total',
+        },
+        {
+            field: 'none',
+            name: 'Projected Total',
+        },
+        {
+            field: 'none',
+            name: 'Total Money',
+        },
+        {
+            field: 'none',
+            name: 'Total Future Money',
+        },
+        {
+            field: 'none',
+            name: 'Ratio',
+        },
+    ];
 
     return (
         <EuiBasicTable
             tableCaption="Demo for responsive EuiBasicTable with mobile options"
             items={rawData}
             itemId="id"
-            columns={columns} 
+            columns={columns}
             responsive={true}
+        /* tableLayout={'fixed'} */
         />
     );
 };
+
+export default Table
