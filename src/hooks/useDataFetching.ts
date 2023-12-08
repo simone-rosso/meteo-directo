@@ -26,7 +26,7 @@ export const useDataFetching = ({ cryptoValues }: DataFetchingParams) => {
       }
     };
     setTimeout(()=>fetchData(), 3500);
-  }, []);
+  }, [cryptoValues]);
 
   return { loading, data };
 };

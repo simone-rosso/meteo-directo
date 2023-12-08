@@ -6,11 +6,11 @@ export enum LoaderSize {
     Xl = 'xl'
 }
 
-interface Loader {
+interface ILoader {
     size: LoaderSize
 }
 
-const Loader: React.FC<Loader> = ({ size }:Loader) => {
+const Loader = ({ size }:ILoader) => {
     return (
         <div className="loader__container">
             <EuiLoadingChart size={size} />

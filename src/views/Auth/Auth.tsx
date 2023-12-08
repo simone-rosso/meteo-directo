@@ -15,8 +15,7 @@ import {
   EuiButton,
   EuiFieldText,
   EuiFieldPassword,
-  EuiForm,
-  EuiTextColor,
+  EuiForm
 } from "@elastic/eui";
 
 import "./Auth.css";
