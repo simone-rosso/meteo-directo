@@ -15,7 +15,8 @@ import {
   EuiButton,
   EuiFieldText,
   EuiFieldPassword,
-  EuiForm
+  EuiForm,
+  EuiSwitch
 } from "@elastic/eui";
 
 import "./Auth.css";
@@ -39,6 +40,8 @@ const Auth = ({ history }: AuthProps) => {
     [CredentialsEnum.Password]: "",
   });
 
+  const [dual, setDual] = useState(true);
+
   const handleSubmit = useCallback(
     async (event: any) => {
       event.preventDefault();
@@ -54,6 +57,7 @@ const Auth = ({ history }: AuthProps) => {
     },
     [history, credentials]
   );
+
 
   const { currentUser } = useContext(AuthContext);
 
@@ -72,20 +76,51 @@ const Auth = ({ history }: AuthProps) => {
 
   return (
     <Layout goTo="" url="" >
-      <EuiPage>
+      <EuiForm component="form">
+        <EuiFlexGroup style={{ maxWidth: 600 }}>
+          <EuiFlexItem>
+            <EuiFieldText
+              placeholder="your e-mail..."
+              onChange={(e) => handleChange(e, CredentialsEnum.Email)}
+              value={email}
+              compressed
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFieldText
+              placeholder="your password..."
+              onChange={(e) => handleChange(e, CredentialsEnum.Password)}
+              type="password"
+              compressed
+
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton size="m" onClick={handleSubmit} fill type="submit">Login</EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiForm>
+
+
+      {/*  <EuiPage>
         <EuiPageBody component="div">
           <EuiPageTemplate>
             <EuiPageHeaderContent>
               <EuiPageHeaderSection>
                 <EuiTitle>
                   <h2>
-                  Log in
+                    Log in
                   </h2>
                 </EuiTitle>
               </EuiPageHeaderSection>
             </EuiPageHeaderContent>
             <EuiForm component="form">
-              <EuiFlexGroup style={{ maxWidth: 600 }}>
+              <EuiFlexGroup
+                style={{ maxWidth: 600 }}
+                gutterSize="s"
+                alignItems="center"
+                wrap
+              >
                 <EuiFlexItem>
                   <EuiFormRow label="E-mail">
                     <EuiFieldText
@@ -109,8 +144,8 @@ const Auth = ({ history }: AuthProps) => {
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
                   <EuiFormRow hasEmptyLabelSpace>
-                    <EuiButton onClick={handleSubmit}>
-                       Login
+                    <EuiButton fill onClick={handleSubmit}>
+                      Login
                     </EuiButton>
                   </EuiFormRow>
                 </EuiFlexItem>
@@ -118,8 +153,8 @@ const Auth = ({ history }: AuthProps) => {
             </EuiForm>
           </EuiPageTemplate>
         </EuiPageBody>
-      </EuiPage>
-    </Layout>
+      </EuiPage> */}
+    </Layout >
   );
 };
 
