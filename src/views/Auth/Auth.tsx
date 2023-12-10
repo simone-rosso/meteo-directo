@@ -3,20 +3,11 @@ import { withRouter, Redirect } from "react-router";
 import app from "../../firebase";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import {
-  EuiPage,
-  EuiPageBody,
-  EuiPageTemplate,
-  EuiPageHeaderContent,
-  EuiPageHeaderSection,
-  EuiTitle,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiFormRow,
   EuiButton,
   EuiFieldText,
-  EuiFieldPassword,
-  EuiForm,
-  EuiSwitch
+  EuiForm
 } from "@elastic/eui";
 
 import "./Auth.css";
@@ -40,8 +31,6 @@ const Auth = ({ history }: AuthProps) => {
     [CredentialsEnum.Password]: "",
   });
 
-  const [dual, setDual] = useState(true);
-
   const handleSubmit = useCallback(
     async (event: any) => {
       event.preventDefault();
@@ -57,7 +46,6 @@ const Auth = ({ history }: AuthProps) => {
     },
     [history, credentials]
   );
-
 
   const { currentUser } = useContext(AuthContext);
 
